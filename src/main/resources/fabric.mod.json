@@ -1,0 +1,47 @@
+{
+	"schemaVersion": 1,
+	"id": "farmtweaks",
+	"version": "${version}",
+	"name": "FarmTweaks",
+	"description": "Enhances the Vanilla Minecraft farming experience while being fully server-side.",
+	"authors": [
+		"Powercyphe",
+		"oPixeel (Mod Icon)"
+	],
+
+	"contact": {
+		"homepage": "https://modrinth.com/project/farmtweaks",
+		"sources": "https://github.com/"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.gg/Dmp2dbyNrs"
+			}
+		}
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/farmtweaks/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"powercyphe.farmtweaks.FarmTweaks"
+		],
+		"client": [
+			"powercyphe.farmtweaks.FarmTweaksClient"
+		]
+	},
+	"mixins": [
+		"farmtweaks.mixins.json",
+		{
+			"config": "farmtweaks.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": "*",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
