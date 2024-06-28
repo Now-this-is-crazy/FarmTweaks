@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import powercyphe.farmtweaks.ModConfig;
 import powercyphe.farmtweaks.util.ConfigUtil;
 import powercyphe.farmtweaks.util.FarmTweaksUtil;
 
@@ -23,17 +24,14 @@ import java.util.List;
 public class BlockMixin {
     @Inject(method = "afterBreak", at = @At("HEAD"))
     private void afterBreakMixin(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci) {
-        if (ConfigUtil.canDropExperience()) {
             if (state.getBlock() instanceof CropBlock) {
                 if (((CropBlock) state.getBlock()).isMature(state)) {
-                    FarmTweaksUtil.farmtweaks$dropExp(world, pos, 3);
+                    FarmTweaksUtil.farmtweaks$dropExp(world, pos, ModConfig.cropExperienceChance);
                 }
             }
-        }
     }
     @Inject(method = "onBreak", at = @At("HEAD"))
     private void onBreakMixin(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfoReturnable<BlockState> cir) {
-        if (ConfigUtil.canDropExperience()) {
             if (state.isOf(Blocks.MELON) || state.isOf(Blocks.PUMPKIN)) {
                 List<Pair<BlockPos, Direction>> posList = Arrays.asList(
                         new Pair<>(pos.offset(Direction.Axis.X, 1), Direction.WEST),
@@ -45,12 +43,11 @@ public class BlockMixin {
                     BlockPos blockPos = pair.getLeft();
                     if (world.getBlockState(blockPos).getBlock() instanceof AttachedStemBlock) {
                         if (pair.getRight() == world.getBlockState(blockPos).get(AttachedStemBlock.FACING)) {
-                            FarmTweaksUtil.farmtweaks$dropExp(world, pos, 7);
+                            FarmTweaksUtil.farmtweaks$dropExp(world, pos, ModConfig.cropExperienceChance);
 
                         }
                     }
                 }
-            }
         }
 
     }

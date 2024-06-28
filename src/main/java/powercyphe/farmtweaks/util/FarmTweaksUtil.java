@@ -10,7 +10,7 @@ import java.util.Random;
 public class FarmTweaksUtil {
 
     public static void farmtweaks$dropExp(World world, BlockPos pos, Integer chance) {
-        if (new Random().nextInt(10) < chance) {
+        if (new Random().nextInt(100) < chance) {
             ExperienceOrbEntity exp = new ExperienceOrbEntity(world, pos.getX(), pos.getY(), pos.getZ(), 1);
             world.spawnEntity(exp);
         }

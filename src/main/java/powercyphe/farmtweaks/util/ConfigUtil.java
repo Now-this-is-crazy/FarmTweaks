@@ -57,10 +57,6 @@ public class ConfigUtil {
         return ModConfig.bonemealableSugarcane;
     }
 
-    public static boolean canDropExperience() {
-        return ModConfig.cropsDropExperience;
-    }
-
     public static boolean allowAltHoeUse() {
         return ModConfig.allowAlternateHoeUse;
     }

@@ -29,5 +29,5 @@ public class ModConfig extends MidnightConfig {
     @Entry
     public static Boolean allowAlternateHoeUse = true;
     @Entry
-    public static Boolean cropsDropExperience = true;
+    public static int cropExperienceChance = 50;
 }
