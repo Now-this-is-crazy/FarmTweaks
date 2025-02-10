@@ -10,7 +10,7 @@
 	],
 
 	"contact": {
-		"homepage": "https://modrinth.com/project/farmtweaks",
+		"homepage": "https://modrinth.com/mod/farmtweaks",
 		"sources": "https://github.com/Now-this-is-crazy/FarmTweaks"
 	},
 	"custom": {
@@ -40,7 +40,7 @@
 	],
 	"depends": {
 		"fabricloader": "*",
-		"minecraft": "1.20.4",
+		"minecraft": "~1.20",
 		"java": ">=17",
 		"fabric-api": "*"
 	}

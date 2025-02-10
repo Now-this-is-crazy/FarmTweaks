@@ -1,16 +1,19 @@
 {
-	"required": true,
-	"package": "powercyphe.farmtweaks.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"BlockMixin",
-		"DispenserBehaviorMixin",
-		"FarmLandMixin",
-		"FlowerBlockMixin",
-		"HoeItemMixin",
-		"SugarCaneBlockMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "powercyphe.farmtweaks.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BlockItemMixin",
+    "FarmLandMixin",
+    "bonemealable.CoralParentBlockMixin",
+    "bonemealable.PlantBlockMixin",
+    "bonemealable.SugarCaneBlockMixin",
+    "crops.BlockMixin",
+    "crops.HoeItemMixin",
+    "crops.IntPropertyAccess",
+    "dispenser.MinecraftServerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

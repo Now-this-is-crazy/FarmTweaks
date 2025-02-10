@@ -9,25 +9,21 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import powercyphe.farmtweaks.util.ConfigUtil;
+import powercyphe.farmtweaks.FarmTweaksUtil;
 
 @Mixin(FarmlandBlock.class)
 public abstract class FarmLandMixin {
 
-    @Shadow
-    public static void setToDirt(@Nullable Entity entity, BlockState state, World world, BlockPos pos) {
-    }
 
     @Redirect(method = "onLandedUpon", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/FarmlandBlock;setToDirt(Lnet/minecraft/entity/Entity;Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
     private void setToDirtMixin(Entity entity, BlockState state, World world, BlockPos pos) {
-        if (!ConfigUtil.canTrampleFarmland()) {
+        if (!FarmTweaksUtil.allowFarmLandTrampling()) {
             setToFarmLand(entity, state, world, pos);
         } else {
-            setToDirt(entity, state, world, pos);
+            FarmlandBlock.setToDirt(entity, state, world, pos);
         }
     }
 

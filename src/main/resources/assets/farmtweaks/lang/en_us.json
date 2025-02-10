@@ -1,4 +1,30 @@
 {
-  "farmtweaks.midnightconfig.title":"FarmTweaks",
-  "farmtweaks.midnightconfig.dispensableItems": "Dispensable Items"
+  "farmtweaks.midnightconfig.title":" FarmTweaks",
+
+  "farmtweaks.midnightconfig.allowAlternateHoeUse": "Allow Alternate Hoe Use",
+  "farmtweaks.midnightconfig.allowAlternateHoeUse.tooltip": "Whether or not players can use the Interact key to harvest crops. \nHarvesting this way will replant crops automatically.",
+
+  "farmtweaks.midnightconfig.allowFarmlandTrampling": "Allow Trampling of Farmland",
+  "farmtweaks.midnightconfig.allowFarmlandTrampling.tooltip": "Whether or not Entities can trample farmland.",
+
+  "farmtweaks.midnightconfig.allowGrassReplenishment": "Allow Grass Conversion",
+  "farmtweaks.midnightconfig.allowGrassReplenishment.tooltip": "Whether or not players can convert dirt into grass using seeds. Different Dirt Types convert to different grass types. \n\n§8Usable Seeds can be modified using a datapack.",
+
+  "farmtweaks.midnightconfig.cropExperienceChance": "Crop Experience Chance",
+  "farmtweaks.midnightconfig.cropExperienceChance.tooltip": "The chance of crops dropping experience when harvested.",
+
+  "farmtweaks.midnightconfig.enhancedBonemeal": "Enhanced Bonemeal",
+  "farmtweaks.midnightconfig.enhancedBonemeal.tooltip": "Whether or not more plants should be bonemealable. Certain blocks can be disabled by adding them to the 'Non-Bonemealable Blocks'",
+
+  "farmtweaks.midnightconfig.nonBonemealableBlocks": "Non-Bonemealable Blocks",
+  "farmtweaks.midnightconfig.nonBonemealableBlocks.tooltip": "Blocks that cannot be bonemealed.",
+
+  "farmtweaks.midnightconfig.dispensableItems": "Dispensable Items",
+  "farmtweaks.midnightconfig.dispensableItems.tooltip": "Items that can be placed using a dispenser. Can be updated by reloading the world.",
+
+  "farmtweaks.midnightconfig.harvestableBlocks": "Harvestable Blocks",
+  "farmtweaks.midnightconfig.harvestableBlocks.tooltip": "Blocks that can be harvested using the alternate hoe use. \n§cThis only works with blocks that support the §nage§c state!"
+
+
+
 }
