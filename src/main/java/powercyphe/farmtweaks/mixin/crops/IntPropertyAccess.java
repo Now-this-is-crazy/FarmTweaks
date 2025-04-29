@@ -6,9 +6,9 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(IntProperty.class)
 public interface IntPropertyAccess {
-    @Accessor
+    @Accessor("max")
     int getMax();
 
-    @Accessor
+    @Accessor("min")
     int getMin();
 }

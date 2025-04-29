@@ -23,7 +23,7 @@ public class SugarCaneBlockMixin implements Fertilizable {
     @Shadow @Final public static IntProperty AGE;
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         return FarmTweaksUtil.canBonemeal(state.getBlock());
     }
 
@@ -34,8 +34,7 @@ public class SugarCaneBlockMixin implements Fertilizable {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        if (!world.isClient()) {
-            SugarCaneBlock block = (SugarCaneBlock)(Object)this;
+            SugarCaneBlock block = (SugarCaneBlock) (Object) this;
             while (world.getBlockState(pos).isOf(Blocks.SUGAR_CANE)) {
                 pos = pos.up();
             }
@@ -55,7 +54,6 @@ public class SugarCaneBlockMixin implements Fertilizable {
                         world.setBlockState(pos, (BlockState)state.with(AGE, MathHelper.clamp(j + MathHelper.nextInt(Random.create(), 3, 5), 0, 15)), 4);
                     }
                 }
-            }
         }
     }
 }

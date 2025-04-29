@@ -2,6 +2,7 @@ package powercyphe.farmtweaks.mixin.crops;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.*;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemUsageContext;
@@ -14,7 +15,9 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Final;
@@ -51,6 +54,7 @@ public class HoeItemMixin {
     private void useOnBlockMixin(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
         World world = context.getWorld();
         PlayerEntity player = context.getPlayer();
+        Hand hand = context.getHand();
 
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
@@ -66,7 +70,7 @@ public class HoeItemMixin {
                     }
                 }
 
-                if (ageProperty != null && blockState.get(ageProperty) >= ((IntPropertyAccess) ageProperty).getMax()) {
+                if (ageProperty != null && blockState.get(ageProperty) >= ((IntPropertyAccess) (Object) ageProperty).getMax()) {
                     block.afterBreak(world, player, blockPos, blockState, world.getBlockEntity(blockPos), context.getStack());
                     world.setBlockState(blockPos, block.getDefaultState());
                     world.emitGameEvent(player, GameEvent.BLOCK_DESTROY, blockPos);
@@ -79,10 +83,7 @@ public class HoeItemMixin {
 
                     if (player != null) {
                         player.swingHand(context.getHand(), true);
-                        context.getStack().damage(1, player, (p) -> {
-                            p.sendToolBreakStatus(context.getHand());
-                        });
-
+                        context.getStack().damage(1, player, hand == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
                     }
                     cir.setReturnValue(ActionResult.SUCCESS);
                 }

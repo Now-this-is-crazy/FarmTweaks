@@ -11,9 +11,8 @@ import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Mixin;
 import powercyphe.farmtweaks.FarmTweaksUtil;
 
-@Mixin(PlantBlock.class)
-public class PlantBlockMixin implements Fertilizable {
-
+@Mixin(AbstractCoralBlock.class)
+public class AbstractCoralBlockMixin implements Fertilizable {
 
     @Override
     public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
@@ -27,7 +26,7 @@ public class PlantBlockMixin implements Fertilizable {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        PlantBlock block = (PlantBlock) (Object) this;
+        AbstractCoralBlock block = (AbstractCoralBlock) (Object) this;
 
         if (FarmTweaksUtil.canBonemeal(state.getBlock())) {
             ItemStack item = block.asItem().getDefaultStack();

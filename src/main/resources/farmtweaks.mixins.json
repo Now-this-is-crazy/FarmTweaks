@@ -1,11 +1,12 @@
 {
   "required": true,
   "package": "powercyphe.farmtweaks.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BlockItemMixin",
     "FarmLandMixin",
-    "bonemealable.CoralParentBlockMixin",
+    "bonemealable.AbstractCoralBlockMixin",
+    "bonemealable.CactusBlockMixin",
     "bonemealable.PlantBlockMixin",
     "bonemealable.SugarCaneBlockMixin",
     "crops.BlockMixin",

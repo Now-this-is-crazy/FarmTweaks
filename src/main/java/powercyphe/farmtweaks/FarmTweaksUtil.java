@@ -43,7 +43,7 @@ public class FarmTweaksUtil {
         while (iter < FarmTweaksConfig.nonBonemealableBlocks.size()) {
             String entry = FarmTweaksConfig.nonBonemealableBlocks.get(iter);
             String[] split = entry.split(":");
-            if (Identifier.isValid(entry)) {
+            if (Identifier.isNamespaceValid(split[0])) {
                 Block block = Registries.BLOCK.get(Identifier.of(split[0], split[1]));
                 blocks.add(block);
             } else {
@@ -61,12 +61,10 @@ public class FarmTweaksUtil {
         int iter = 0;
         while (iter < FarmTweaksConfig.dispensableItems.size()) {
             String entry = FarmTweaksConfig.dispensableItems.get(iter);
-            if (Identifier.isValid(entry)) {
-                String[] split = entry.split(":");
+            String[] split = entry.split(":");
+            if (Identifier.isNamespaceValid(split[0])) {
                 Item item = Registries.ITEM.get(Identifier.of(split[0], split[1]));
                 items.add(item);
-
-                System.out.println(item);
             } else {
                 FarmTweaks.errorMessage("Invalid Identifier at " + entry);
             }
@@ -83,7 +81,7 @@ public class FarmTweaksUtil {
         while (iter < FarmTweaksConfig.harvestableBlocks.size()) {
             String entry = FarmTweaksConfig.harvestableBlocks.get(iter);
             String[] split = entry.split(":");
-            if (Identifier.isValid(entry)) {
+            if (Identifier.isNamespaceValid(split[0])) {
                 Block block = Registries.BLOCK.get(Identifier.of(split[0], split[1]));
                 blocks.add(block);
             } else {
