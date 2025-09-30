@@ -20,28 +20,21 @@
 			}
 		}
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/farmtweaks/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
 			"powercyphe.farmtweaks.FarmTweaks"
-		],
-		"client": [
-			"powercyphe.farmtweaks.FarmTweaksClient"
 		]
 	},
 	"mixins": [
-		"farmtweaks.mixins.json",
-		{
-			"config": "farmtweaks.client.mixins.json",
-			"environment": "client"
-		}
+		"farmtweaks.mixins.json"
 	],
 	"depends": {
 		"fabricloader": "*",
-		"minecraft": ">=1.21.5",
-		"java": ">=17",
+		"minecraft": ">=1.21.6",
+		"java": ">=21",
 		"fabric-api": "*",
 		"midnightlib": "*"
 	}

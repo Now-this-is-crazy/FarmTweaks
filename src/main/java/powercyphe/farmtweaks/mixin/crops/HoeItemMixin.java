@@ -2,6 +2,7 @@ package powercyphe.farmtweaks.mixin.crops;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.*;
+import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.HoeItem;
@@ -13,6 +14,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -47,47 +49,5 @@ public class HoeItemMixin {
     private static void addTillingActions(CallbackInfo ci) {
         TILLING_ACTIONS.put(Blocks.MYCELIUM, Pair.of(HoeItem::canTillFarmland, createTillAction(Blocks.FARMLAND.getDefaultState())));
         TILLING_ACTIONS.put(Blocks.PODZOL, Pair.of(HoeItem::canTillFarmland, createTillAction(Blocks.FARMLAND.getDefaultState())));
-    }
-
-
-    @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
-    private void useOnBlockMixin(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-        World world = context.getWorld();
-        PlayerEntity player = context.getPlayer();
-        Hand hand = context.getHand();
-
-        BlockPos blockPos = context.getBlockPos();
-        BlockState blockState = world.getBlockState(blockPos);
-        Block block = blockState.getBlock();
-
-        if (!world.isClient()) {
-            if (FarmTweaksUtil.allowAltHoeUse(blockState.getBlock())) {
-                IntProperty ageProperty = null;
-                for (Property<?> property : blockState.getProperties()) {
-                    if (property.getName().equalsIgnoreCase("age") && property instanceof IntProperty intProperty) {
-                        ageProperty = intProperty;
-                        break;
-                    }
-                }
-
-                if (ageProperty != null && blockState.get(ageProperty) >= ((IntPropertyAccess) (Object) ageProperty).getMax()) {
-                    block.afterBreak(world, player, blockPos, blockState, world.getBlockEntity(blockPos), context.getStack());
-                    world.setBlockState(blockPos, block.getDefaultState());
-                    world.emitGameEvent(player, GameEvent.BLOCK_DESTROY, blockPos);
-
-                    world.playSound(null, blockPos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS);
-
-                    BlockStateParticleEffect particleEffect = new BlockStateParticleEffect(ParticleTypes.BLOCK, blockState);
-                    ((ServerWorld)world).spawnParticles(particleEffect, blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, 14, 0, 0,0, 1);
-                    ((ServerWorld)world).spawnParticles(ParticleTypes.SWEEP_ATTACK, blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, 0, 0, 0,0, 1);
-
-                    if (player != null) {
-                        player.swingHand(context.getHand(), true);
-                        context.getStack().damage(1, player, hand == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
-                    }
-                    cir.setReturnValue(ActionResult.SUCCESS);
-                }
-            }
-        }
     }
 }

@@ -32,18 +32,14 @@ public class BlockMixin {
     @Inject(method = "onBreak", at = @At("HEAD"))
     private void onBreakMixin(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfoReturnable<BlockState> cir) {
             if ((state.isOf(Blocks.MELON) || state.isOf(Blocks.PUMPKIN)) && !player.isCreative()) {
-                List<Pair<BlockPos, Direction>> posList = Arrays.asList(
-                        new Pair<>(pos.offset(Direction.Axis.X, 1), Direction.WEST),
-                        new Pair<>(pos.offset(Direction.Axis.X, -1), Direction.EAST),
-                        new Pair<>(pos.offset(Direction.Axis.Z, 1), Direction.NORTH),
-                        new Pair<>(pos.offset(Direction.Axis.Z, -1), Direction.SOUTH)
-                );
-                for (Pair<BlockPos, Direction> pair : posList) {
-                    BlockPos blockPos = pair.getLeft();
-                    if (world.getBlockState(blockPos).getBlock() instanceof AttachedStemBlock) {
-                        if (pair.getRight() == world.getBlockState(blockPos).get(AttachedStemBlock.FACING)) {
-                            FarmTweaksUtil.farmtweaks$dropExp(world, pos);
+                for (Direction direction : Direction.values()) {
+                    if (direction.getAxis() != Direction.Axis.Y) {
+                        BlockPos blockPos = pos.offset(direction.getOpposite());
+                        if (world.getBlockState(blockPos).getBlock() instanceof AttachedStemBlock) {
+                            if (world.getBlockState(blockPos).get(AttachedStemBlock.FACING) == direction) {
+                                FarmTweaksUtil.farmtweaks$dropExp(world, pos);
 
+                            }
                         }
                     }
                 }

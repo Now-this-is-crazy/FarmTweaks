@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.10-SNAPSHOT'
+	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -10,28 +10,8 @@ base {
 	archivesName = project.archives_base_name
 }
 
-repositories {
-	maven { url 'https://maven.shedaniel.me/' }
-	maven { url 'https://api.modrinth.com/maven' }
-	maven {
-		name = "Greenhouse Maven"
-		url = 'https://maven.greenhouseteam.dev/releases/'
-	}
-	maven { url = "https://mvn.devos.one/releases/" } // Porting Lib
-	maven {
-		url "https://maven.jamieswhiteshirt.com/libs-release" // Reach Entity Attributes (Required by Porting Lib)
-		content {
-			includeGroup "com.jamieswhiteshirt"
-		}
-	}
-	maven {
-		name = "ModMaven"
-		url = "https://modmaven.dev"
-	}
-}
-
 loom {
-    splitEnvironmentSourceSets()
+	splitEnvironmentSourceSets()
 
 	mods {
 		"farmtweaks" {
@@ -40,6 +20,10 @@ loom {
 		}
 	}
 
+}
+
+repositories {
+	maven { url 'https://api.modrinth.com/maven' }
 }
 
 dependencies {
@@ -51,19 +35,19 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
-	
+
 }
 
 processResources {
 	inputs.property "version", project.version
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "version": inputs.properties.version
 	}
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
+	it.options.release = 21
 }
 
 java {
@@ -77,8 +61,10 @@ java {
 }
 
 jar {
+	inputs.property "archivesName", project.base.archivesName
+
 	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}"}
+		rename { "${it}_${inputs.properties.archivesName}"}
 	}
 }
 

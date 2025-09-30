@@ -11,11 +11,11 @@ import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Mixin;
 import powercyphe.farmtweaks.FarmTweaksUtil;
 
-@Mixin(CoralParentBlock.class)
+@Mixin(DeadCoralFanBlock.class)
 public class CoralParentBlockMixin implements Fertilizable {
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         return FarmTweaksUtil.canBonemeal(state.getBlock());
     }
 
