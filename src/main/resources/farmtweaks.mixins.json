@@ -5,15 +5,16 @@
   "mixins": [
     "BlockItemMixin",
     "FarmLandMixin",
-    "bonemealable.AbstractCoralBlockMixin",
+    "accessor.IntegerPropertyAccessor",
+    "bonemealable.BaseCoralFanBlockMixin",
+    "bonemealable.BaseCoralPlantTypeBlockMixin",
     "bonemealable.CactusBlockMixin",
-    "bonemealable.CoralParentBlockMixin",
-    "bonemealable.PlantBlockMixin",
     "bonemealable.SugarCaneBlockMixin",
+    "bonemealable.VegetationBlockMixin",
     "crops.BlockMixin",
     "crops.HoeItemMixin",
-    "crops.IntPropertyAccess",
-    "dispenser.MinecraftServerMixin"
+    "dispenser.MinecraftServerMixin",
+    "leafdecay.LeavesBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

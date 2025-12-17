@@ -1,19 +1,10 @@
 package powercyphe.farmtweaks.mixin.dispenser;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.dispenser.BlockPlacementDispenserBehavior;
-import net.minecraft.block.dispenser.DispenserBehavior;
-import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.core.dispenser.ShulkerBoxDispenseBehavior;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPointer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.DispenserBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin {
 
-    @Inject(method = "loadWorld", at = @At("RETURN"))
+    @Inject(method = "loadLevel", at = @At("RETURN"))
     private void farmtweaks$dispenserBehavior(CallbackInfo ci) {
         farmtweaks$loadDispenserBehavior();
     }
@@ -42,7 +33,7 @@ public class MinecraftServerMixin {
     private static void farmtweaks$loadDispenserBehavior() {
         for (Item dispensableItem : FarmTweaksUtil.getDispensableItems()) {
             if (dispensableItem instanceof BlockItem) {
-                DispenserBlock.registerBehavior(dispensableItem, new BlockPlacementDispenserBehavior());
+                DispenserBlock.registerBehavior(dispensableItem, new ShulkerBoxDispenseBehavior());
             }
         }
     }

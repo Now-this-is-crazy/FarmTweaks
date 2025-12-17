@@ -1,14 +1,16 @@
 package powercyphe.farmtweaks;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class FarmTweaksUtil {
@@ -25,10 +27,10 @@ public class FarmTweaksUtil {
         return FarmTweaksConfig.allowGrassReplenishment;
     }
 
-    public static void farmtweaks$dropExp(World world, BlockPos pos) {
+    public static void farmtweaks$dropExp(Level world, BlockPos pos) {
         if (new Random().nextInt(100) < FarmTweaksConfig.cropExperienceChance) {
-            ExperienceOrbEntity exp = new ExperienceOrbEntity(world, pos.getX(), pos.getY(), pos.getZ(), 1);
-            world.spawnEntity(exp);
+            ExperienceOrb exp = new ExperienceOrb(world, pos.getX(), pos.getY(), pos.getZ(), 1);
+            world.addFreshEntity(exp);
         }
     }
 
@@ -36,60 +38,29 @@ public class FarmTweaksUtil {
         return FarmTweaksConfig.enhancedBonemeal && !(getNonBonemealableBlocks().contains(block));
     }
 
-    public static ArrayList<Block> getNonBonemealableBlocks() {
-        ArrayList<Block> blocks = new ArrayList<>();
-
-        int iter = 0;
-        while (iter < FarmTweaksConfig.nonBonemealableBlocks.size()) {
-            String entry = FarmTweaksConfig.nonBonemealableBlocks.get(iter);
-            String[] split = entry.split(":");
-            if (Identifier.isNamespaceValid(split[0])) {
-                Block block = Registries.BLOCK.get(Identifier.of(split[0], split[1]));
-                blocks.add(block);
-            } else {
-                FarmTweaks.errorMessage("Invalid Identifier at " + entry);
-            }
-            iter++;
-
-        }
-        return blocks;
+    public static List<Block> getNonBonemealableBlocks() {
+        return getParsedList(BuiltInRegistries.BLOCK, FarmTweaksConfig.nonBonemealableBlocks);
     }
 
-    public static ArrayList<Item> getDispensableItems() {
-        ArrayList<Item> items = new ArrayList<>();
-
-        int iter = 0;
-        while (iter < FarmTweaksConfig.dispensableItems.size()) {
-            String entry = FarmTweaksConfig.dispensableItems.get(iter);
-            String[] split = entry.split(":");
-            if (Identifier.isNamespaceValid(split[0])) {
-                Item item = Registries.ITEM.get(Identifier.of(split[0], split[1]));
-                items.add(item);
-            } else {
-                FarmTweaks.errorMessage("Invalid Identifier at " + entry);
-            }
-            iter++;
-
-        }
-        return items;
+    public static List<Item> getDispensableItems() {
+        return getParsedList(BuiltInRegistries.ITEM, FarmTweaksConfig.dispensableItems);
     }
 
-    public static ArrayList<Block> getHarvestableBlocks() {
-        ArrayList<Block> blocks = new ArrayList<>();
+    public static List<Block> getHarvestableBlocks() {
+        return getParsedList(BuiltInRegistries.BLOCK, FarmTweaksConfig.harvestableBlocks);
+    }
 
-        int iter = 0;
-        while (iter < FarmTweaksConfig.harvestableBlocks.size()) {
-            String entry = FarmTweaksConfig.harvestableBlocks.get(iter);
-            String[] split = entry.split(":");
-            if (Identifier.isNamespaceValid(split[0])) {
-                Block block = Registries.BLOCK.get(Identifier.of(split[0], split[1]));
-                blocks.add(block);
-            } else {
-                FarmTweaks.errorMessage("Invalid Identifier at " + entry);
-            }
-            iter++;
+    public static <T> List<T> getParsedList(Registry<T> registry, List<String> identifiers) {
+        List<T> values = new ArrayList<>();
 
+        for (String strIdentifier : identifiers) {
+            Identifier id = Identifier.parse(strIdentifier);
+
+            registry.get(id).ifPresentOrElse(
+                    (t) -> values.add(t.value()),
+                    () -> FarmTweaks.errorMessage("Failed parsing " + strIdentifier + " from List: " + identifiers)
+            );
         }
-        return blocks;
+        return values;
     }
 }

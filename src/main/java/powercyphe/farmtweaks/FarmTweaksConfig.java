@@ -1,14 +1,14 @@
 package powercyphe.farmtweaks;
 
 import eu.midnightdust.lib.config.MidnightConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class FarmTweaksConfig extends MidnightConfig {
+
+    @Entry
+    public static boolean fastLeafDecay = true;
 
     @Entry
     public static boolean allowAlternateHoeUse = true;
