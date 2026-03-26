@@ -1,6 +1,5 @@
 package powercyphe.farmtweaks.mixin.leafdecay;
 
-import net.minecraft.core.BlockBox;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -13,28 +12,23 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import powercyphe.farmtweaks.FarmTweaksConfig;
+import powercyphe.farmtweaks.event.LeafDecayEvent;
 
 @Mixin(LeavesBlock.class)
 public abstract class LeavesBlockMixin extends Block {
+    @Shadow
+    protected abstract boolean decaying(BlockState blockState);
+
     public LeavesBlockMixin(Properties properties) {
         super(properties);
     }
 
-    @Shadow
-    protected abstract boolean decaying(BlockState blockState);
-
     @Inject(method = "randomTick", at = @At("HEAD"))
     private void farmtweaks$fastLeafDecay(BlockState state, ServerLevel level, BlockPos blockPos, RandomSource random, CallbackInfo ci) {
-        if (this.decaying(state) && FarmTweaksConfig.fastLeafDecay) {
-            BlockBox box = BlockBox.of(blockPos.offset(1, 1, 1), blockPos.offset(-1, -1, -1));
-            box.forEach(adjPos -> {
-                BlockState adjState = level.getBlockState(adjPos);
+        LeavesBlock leavesBlock = (LeavesBlock) (Object) this;
 
-                if (adjState.is(this) && !blockPos.equals(adjPos)) {
-                    level.scheduleTick(blockPos, this, random.nextInt(30));
-                }
-            });
-
+        if (FarmTweaksConfig.fastLeafDecay && this.decaying(state)) {
+            LeafDecayEvent.get().queueNearby(level, leavesBlock, blockPos);
         }
     }
 }

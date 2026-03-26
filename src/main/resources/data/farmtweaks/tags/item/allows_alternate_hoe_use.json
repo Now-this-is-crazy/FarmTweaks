@@ -1,5 +1,9 @@
 {
   "values": [
-    "#minecraft:hoes"
+    "#minecraft:hoes",
+    {
+      "id": "#farmersdelight:tools/knives",
+      "required": false
+    }
   ]
 }

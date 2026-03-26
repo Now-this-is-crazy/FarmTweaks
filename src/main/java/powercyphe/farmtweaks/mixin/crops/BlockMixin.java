@@ -24,7 +24,7 @@ public class BlockMixin {
     private void afterBreakMixin(Level world, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci) {
             if (state.getBlock() instanceof CropBlock) {
                 if (((CropBlock) state.getBlock()).isMaxAge(state)) {
-                    FarmTweaksUtil.farmtweaks$dropExp(world, pos);
+                    FarmTweaksUtil.dropExp(world, pos);
                 }
             }
     }
@@ -36,7 +36,7 @@ public class BlockMixin {
                         BlockPos blockPos = pos.relative(direction.getOpposite());
                         if (world.getBlockState(blockPos).getBlock() instanceof AttachedStemBlock) {
                             if (world.getBlockState(blockPos).getValue(AttachedStemBlock.FACING) == direction) {
-                                FarmTweaksUtil.farmtweaks$dropExp(world, pos);
+                                FarmTweaksUtil.dropExp(world, pos);
 
                             }
                         }

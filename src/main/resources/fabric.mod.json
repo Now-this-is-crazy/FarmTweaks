@@ -6,7 +6,7 @@
 	"description": "Enhances the Vanilla Minecraft farming experience while being fully server-side.",
 	"authors": [
 		"Powercyphe",
-		"oPixeel (Mod Icon)"
+		"starlikestylus (Mod Icon)"
 	],
 
 	"contact": {
@@ -33,8 +33,8 @@
 	],
 	"depends": {
 		"fabricloader": "*",
-		"minecraft": ">=1.21.11",
-		"java": ">=21",
+		"minecraft": ">=26.1",
+		"java": ">=25",
 		"fabric-api": "*",
 		"midnightlib": "*"
 	}

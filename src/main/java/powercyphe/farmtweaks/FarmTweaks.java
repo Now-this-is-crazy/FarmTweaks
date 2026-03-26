@@ -3,6 +3,7 @@ package powercyphe.farmtweaks;
 
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.Registries;
@@ -15,6 +16,8 @@ import net.minecraft.world.level.block.Blocks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import powercyphe.farmtweaks.event.AlternateHoeUseEvent;
+import powercyphe.farmtweaks.event.ConvertToGrassEvent;
+import powercyphe.farmtweaks.event.LeafDecayEvent;
 
 public class FarmTweaks implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("farmtweaks");
@@ -34,6 +37,8 @@ public class FarmTweaks implements ModInitializer {
 		GRASS_CONVERTABLE.add(new Tuple<>(Blocks.ROOTED_DIRT, Blocks.MYCELIUM));
 
 		UseBlockCallback.EVENT.register(new AlternateHoeUseEvent());
+		UseBlockCallback.EVENT.register(new ConvertToGrassEvent());
+        ServerTickEvents.END_LEVEL_TICK.register(LeafDecayEvent.get());
 	}
 
 	public static Identifier id(String path) {

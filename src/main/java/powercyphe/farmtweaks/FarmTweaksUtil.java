@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
@@ -11,7 +12,6 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class FarmTweaksUtil {
 
@@ -27,8 +27,8 @@ public class FarmTweaksUtil {
         return FarmTweaksConfig.allowGrassReplenishment;
     }
 
-    public static void farmtweaks$dropExp(Level world, BlockPos pos) {
-        if (new Random().nextInt(100) < FarmTweaksConfig.cropExperienceChance) {
+    public static void dropExp(Level world, BlockPos pos) {
+        if (RandomSource.create().nextInt(100) < FarmTweaksConfig.cropExperienceChance) {
             ExperienceOrb exp = new ExperienceOrb(world, pos.getX(), pos.getY(), pos.getZ(), 1);
             world.addFreshEntity(exp);
         }

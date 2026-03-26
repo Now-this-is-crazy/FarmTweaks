@@ -1,29 +1,30 @@
 package powercyphe.farmtweaks.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FarmBlock;
+import net.minecraft.world.level.block.FarmlandBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import powercyphe.farmtweaks.FarmTweaksUtil;
 
-@Mixin(FarmBlock.class)
-public abstract class FarmLandMixin {
+@Mixin(FarmlandBlock.class)
+public abstract class FarmlandBlockMixin {
 
 
-    @Redirect(method = "fallOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/FarmBlock;turnToDirt(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"))
-    private void setToDirtMixin(Entity entity, BlockState state, Level world, BlockPos pos) {
+    @WrapOperation(method = "fallOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/FarmlandBlock;turnToDirt(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"))
+    private void setToDirtMixin(Entity entity, BlockState state, Level level, BlockPos pos, Operation<Void> original) {
         if (!FarmTweaksUtil.allowFarmLandTrampling()) {
-            setToFarmLand(entity, state, world, pos);
+            setToFarmLand(entity, state, level, pos);
         } else {
-            FarmBlock.turnToDirt(entity, state, world, pos);
+            FarmlandBlock.turnToDirt(entity, state, level, pos);
         }
     }
 

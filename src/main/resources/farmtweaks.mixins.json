@@ -3,9 +3,9 @@
   "package": "powercyphe.farmtweaks.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BlockItemMixin",
-    "FarmLandMixin",
+    "FarmlandBlockMixin",
     "accessor.IntegerPropertyAccessor",
+    "accessor.LeavesBlockAccessor",
     "bonemealable.BaseCoralFanBlockMixin",
     "bonemealable.BaseCoralPlantTypeBlockMixin",
     "bonemealable.CactusBlockMixin",
