@@ -14,7 +14,13 @@ public class FarmTweaksConfig extends MidnightConfig {
     public static boolean allowAlternateHoeUse = true;
 
     @Entry
+    public static boolean tieredAlternateHoeUse = false;
+
+    @Entry
     public static boolean allowFarmlandTrampling = false;
+
+    @Entry
+    public static boolean smartPathMaking = true;
 
     @Entry
     public static boolean allowGrassReplenishment = true;
@@ -27,7 +33,6 @@ public class FarmTweaksConfig extends MidnightConfig {
 
     @Entry
     public static List<String> nonBonemealableBlocks = Arrays.asList(
-            "minecraft:nether_wart",
             "minecraft:wither_rose",
             "minecraft:torchflower",
             "minecraft:pitcher_plant"

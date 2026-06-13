@@ -16,11 +16,23 @@ import java.util.List;
 public class FarmTweaksUtil {
 
     public static boolean allowAltHoeUse(Block block) {
-        return FarmTweaksConfig.allowAlternateHoeUse && FarmTweaksUtil.getHarvestableBlocks().contains(block);
+        return FarmTweaksConfig.allowAlternateHoeUse && canHarvest(block);
+    }
+
+    public static boolean canHarvest(Block block) {
+        return FarmTweaksUtil.getHarvestableBlocks().contains(block);
+    }
+
+    public static boolean useTieredAltHoeUse() {
+        return FarmTweaksConfig.tieredAlternateHoeUse;
     }
 
     public static boolean allowFarmLandTrampling() {
         return FarmTweaksConfig.allowFarmlandTrampling;
+    }
+
+    public static boolean useSmartPathMaking() {
+        return FarmTweaksConfig.smartPathMaking;
     }
 
     public static boolean allowGrassReplenishment() {

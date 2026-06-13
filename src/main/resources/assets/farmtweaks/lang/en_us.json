@@ -1,11 +1,20 @@
 {
   "farmtweaks.midnightconfig.title":" FarmTweaks",
 
+  "farmtweaks.midnightconfig.fastLeafDecay": "Fast Leaf Decay",
+  "farmtweaks.midnightconfig.fastLeafDecay.tooltip": "Whether or not leaves should decay faster.",
+
   "farmtweaks.midnightconfig.allowAlternateHoeUse": "Allow Alternate Hoe Use",
   "farmtweaks.midnightconfig.allowAlternateHoeUse.tooltip": "Whether or not players can use the Interact key to harvest crops. \nHarvesting this way will replant crops automatically.",
 
+  "farmtweaks.midnightconfig.tieredAlternateHoeUse": "Tiered Alternate Hoe Use",
+  "farmtweaks.midnightconfig.tieredAlternateHoeUse.tooltip": "Whether or not higher tiered hoes should harvest more crops.",
+
   "farmtweaks.midnightconfig.allowFarmlandTrampling": "Allow Trampling of Farmland",
   "farmtweaks.midnightconfig.allowFarmlandTrampling.tooltip": "Whether or not Entities can trample farmland.",
+
+  "farmtweaks.midnightconfig.smartPathMaking": "Smart Path Making",
+  "farmtweaks.midnightconfig.smartPathMaking.tooltip": "Whether or not Dirt Paths should be easier to make.",
 
   "farmtweaks.midnightconfig.allowGrassReplenishment": "Allow Grass Conversion",
   "farmtweaks.midnightconfig.allowGrassReplenishment.tooltip": "Whether or not players can convert dirt into grass using seeds. Different Dirt Types convert to different grass types. \n\n§8Usable Seeds can be modified using a datapack.",

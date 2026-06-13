@@ -6,15 +6,11 @@
     "FarmlandBlockMixin",
     "accessor.IntegerPropertyAccessor",
     "accessor.LeavesBlockAccessor",
-    "bonemealable.BaseCoralFanBlockMixin",
-    "bonemealable.BaseCoralPlantTypeBlockMixin",
-    "bonemealable.CactusBlockMixin",
-    "bonemealable.SugarCaneBlockMixin",
-    "bonemealable.VegetationBlockMixin",
     "crops.BlockMixin",
     "crops.HoeItemMixin",
     "dispenser.MinecraftServerMixin",
-    "leafdecay.LeavesBlockMixin"
+    "leafdecay.LeavesBlockMixin",
+    "path.ShovelItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

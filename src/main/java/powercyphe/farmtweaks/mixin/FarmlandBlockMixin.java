@@ -1,5 +1,6 @@
 package powercyphe.farmtweaks.mixin;
 
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.core.BlockPos;
@@ -18,13 +19,12 @@ import powercyphe.farmtweaks.FarmTweaksUtil;
 @Mixin(FarmlandBlock.class)
 public abstract class FarmlandBlockMixin {
 
-
     @WrapOperation(method = "fallOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/FarmlandBlock;turnToDirt(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"))
     private void setToDirtMixin(Entity entity, BlockState state, Level level, BlockPos pos, Operation<Void> original) {
         if (!FarmTweaksUtil.allowFarmLandTrampling()) {
             setToFarmLand(entity, state, level, pos);
         } else {
-            FarmlandBlock.turnToDirt(entity, state, level, pos);
+            original.call(entity, state, level, pos);
         }
     }
 

@@ -41,10 +41,9 @@ public class LeafDecayEvent implements ServerTickEvents.EndLevelTick {
             BlockPos blockPos = dBlock.blockPos;
             BlockState state = level.getBlockState(blockPos);
 
-            this.queueNearby(level, block, blockPos);
             if (state.is(block)) {
                 if (dBlock.ticks < 0) {
-                    level.removeBlock(blockPos, true);
+                    state.randomTick(level, blockPos, level.getRandom());
                 }
             }
         }
