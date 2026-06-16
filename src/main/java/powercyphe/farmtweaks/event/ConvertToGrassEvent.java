@@ -2,6 +2,7 @@ package powercyphe.farmtweaks.event;
 
 import net.fabricmc.fabric.api.event.player.ItemEvents;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jspecify.annotations.Nullable;
@@ -21,7 +23,11 @@ import powercyphe.farmtweaks.FarmTweaks;
 import powercyphe.farmtweaks.FarmTweaksUtil;
 import powercyphe.farmtweaks.init.FTTags;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ConvertToGrassEvent implements ItemEvents.UseOnCallback {
+    public static final Map<Block, Block> GRASS_CONVERTABLE = new HashMap<>();
 
     @Override
     public @Nullable InteractionResult useOn(UseOnContext context) {
@@ -36,10 +42,10 @@ public class ConvertToGrassEvent implements ItemEvents.UseOnCallback {
 
         if (level instanceof ServerLevel serverLevel) {
             if (stack.is(FTTags.Items.GRASS_SEEDS_TAG) && FarmTweaksUtil.allowGrassReplenishment()) {
-                for (Tuple<Block, Block> pair : FarmTweaks.GRASS_CONVERTABLE) {
-                    Block prevBlock = pair.getA();
-                    Block convBlock = pair.getB();
-                    if (state.getBlock() == prevBlock) {
+                for (Block req : GRASS_CONVERTABLE.keySet()) {
+                    Block convBlock = GRASS_CONVERTABLE.get(req);
+
+                    if (state.getBlock() == convBlock) {
                         if (player != null) {
                             stack.consume(1, player);
                             player.swing(hand, true);
@@ -56,5 +62,11 @@ public class ConvertToGrassEvent implements ItemEvents.UseOnCallback {
             }
         }
         return null;
+    }
+
+    static {
+        GRASS_CONVERTABLE.put(Blocks.DIRT, Blocks.GRASS_BLOCK);
+        GRASS_CONVERTABLE.put(Blocks.COARSE_DIRT, Blocks.PODZOL);
+        GRASS_CONVERTABLE.put(Blocks.ROOTED_DIRT, Blocks.MYCELIUM);
     }
 }

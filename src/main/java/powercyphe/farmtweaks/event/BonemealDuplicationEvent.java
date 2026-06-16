@@ -3,12 +3,10 @@ package powercyphe.farmtweaks.event;
 import net.fabricmc.fabric.api.event.player.ItemEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.BoneMealItem;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
@@ -27,6 +25,7 @@ public class BonemealDuplicationEvent implements ItemEvents.UseOnCallback {
         BlockPos blockPos = context.getClickedPos();
         BlockState state = level.getBlockState(blockPos);
 
+        Player player = context.getPlayer();
         ItemStack stack = context.getItemInHand();
 
         if (FarmTweaksUtil.canBonemeal(state.getBlock()) && stack.is(Items.BONE_MEAL)) {
@@ -38,6 +37,8 @@ public class BonemealDuplicationEvent implements ItemEvents.UseOnCallback {
 
                 ParticleUtils.spawnParticleInBlock(level, blockPos, 14, ParticleTypes.HAPPY_VILLAGER);
                 level.levelEvent(1505, blockPos.relative(context.getClickedFace()), 15);
+
+                stack.consume(1, player);
                 return InteractionResult.SUCCESS;
             }
         }

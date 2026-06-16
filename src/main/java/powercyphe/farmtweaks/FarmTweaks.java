@@ -23,16 +23,10 @@ public class FarmTweaks implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("farmtweaks");
 	public static final String MOD_ID = "farmtweaks";
 
-	public static final NonNullList<Tuple<Block, Block>> GRASS_CONVERTABLE = NonNullList.create();
-
 	@Override
 	public void onInitialize() {
 		MidnightConfig.init(MOD_ID, FarmTweaksConfig.class);
 		FTTags.init();
-
-		GRASS_CONVERTABLE.add(new Tuple<>(Blocks.DIRT, Blocks.GRASS_BLOCK));
-		GRASS_CONVERTABLE.add(new Tuple<>(Blocks.COARSE_DIRT, Blocks.PODZOL));
-		GRASS_CONVERTABLE.add(new Tuple<>(Blocks.ROOTED_DIRT, Blocks.MYCELIUM));
 
 		ItemEvents.USE_ON.register(new AlternateHoeUseEvent());
 		ItemEvents.USE_ON.register(new BonemealDuplicationEvent());
