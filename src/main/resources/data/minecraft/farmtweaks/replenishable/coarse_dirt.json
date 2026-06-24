@@ -1,0 +1,8 @@
+{
+  "allowed": true,
+  "replenished": "minecraft:podzol",
+  "items": [
+    "minecraft:stick",
+    "#minecraft:chains"
+  ]
+}

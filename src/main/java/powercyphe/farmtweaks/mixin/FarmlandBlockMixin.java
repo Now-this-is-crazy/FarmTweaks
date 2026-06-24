@@ -1,6 +1,5 @@
 package powercyphe.farmtweaks.mixin;
 
-import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.core.BlockPos;
@@ -14,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import powercyphe.farmtweaks.FarmTweaksUtil;
+import powercyphe.farmtweaks.util.FarmTweaksUtil;
 
 @Mixin(FarmlandBlock.class)
 public abstract class FarmlandBlockMixin {

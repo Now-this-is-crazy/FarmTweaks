@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jspecify.annotations.Nullable;
-import powercyphe.farmtweaks.FarmTweaksUtil;
+import powercyphe.farmtweaks.util.FarmTweaksUtil;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,0 +1,15 @@
+{
+  "allowed": true,
+  "required": [
+    {
+      "name": "age",
+      "value": "7"
+    }
+  ],
+  "harvested": [
+    {
+      "name": "age",
+      "value": "0"
+    }
+  ]
+}

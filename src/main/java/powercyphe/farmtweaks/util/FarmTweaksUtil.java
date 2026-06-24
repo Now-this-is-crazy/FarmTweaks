@@ -1,30 +1,40 @@
-package powercyphe.farmtweaks;
+package powercyphe.farmtweaks.util;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DynamicOps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.StrictJsonParser;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import powercyphe.farmtweaks.FarmTweaks;
+import powercyphe.farmtweaks.FarmTweaksConfig;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 public class FarmTweaksUtil {
 
-    public static boolean allowAltHoeUse(Block block) {
-        return FarmTweaksConfig.allowAlternateHoeUse && canHarvest(block);
+    public static boolean allowAltHarvest() {
+        return FarmTweaksConfig.allowAlternateHarvest;
     }
 
-    public static boolean canHarvest(Block block) {
-        return FarmTweaksUtil.getHarvestableBlocks().contains(block);
-    }
-
-    public static boolean useTieredAltHoeUse() {
-        return FarmTweaksConfig.tieredAlternateHoeUse;
+    public static boolean rangedAltHarvest() {
+        return FarmTweaksConfig.rangedAlternateHarvest;
     }
 
     public static boolean allowFarmLandTrampling() {
@@ -35,8 +45,8 @@ public class FarmTweaksUtil {
         return FarmTweaksConfig.smartPathMaking;
     }
 
-    public static boolean allowGrassReplenishment() {
-        return FarmTweaksConfig.allowGrassReplenishment;
+    public static boolean allowReplenishment() {
+        return FarmTweaksConfig.allowReplenishment;
     }
 
     public static void dropExp(Level world, BlockPos pos) {
@@ -56,10 +66,6 @@ public class FarmTweaksUtil {
 
     public static List<Item> getDispensableItems() {
         return getParsedList(BuiltInRegistries.ITEM, FarmTweaksConfig.dispensableItems);
-    }
-
-    public static List<Block> getHarvestableBlocks() {
-        return getParsedList(BuiltInRegistries.BLOCK, FarmTweaksConfig.harvestableBlocks);
     }
 
     public static <T> List<T> getParsedList(Registry<T> registry, List<String> identifiers) {

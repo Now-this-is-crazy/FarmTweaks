@@ -10,16 +10,11 @@ import powercyphe.farmtweaks.FarmTweaks;
 
 public interface FTTags {
 
+    TagKey<Item> GRASS_SEEDS = key(Registries.ITEM, "grass_seeds");
+
+    TagKey<Block> BONEMEAL_DUPLICATABLE = key(Registries.BLOCK, "bonemeal_duplicatable");
+
     static void init() {}
-
-    interface Items {
-        TagKey<Item> ALLOWS_ALTERNATE_HOE_USE = key(Registries.ITEM, "allows_alternate_hoe_use");
-        TagKey<Item> GRASS_SEEDS_TAG = key(Registries.ITEM, "grass_seeds");
-    }
-
-    interface Blocks {
-        TagKey<Block> BONEMEAL_DUPLICATABLE = key(Registries.BLOCK, "bonemeal_duplicatable");
-    }
 
     static <A> TagKey<A> key(ResourceKey<Registry<A>> registry, String name) {
         return TagKey.create(registry, FarmTweaks.id(name));

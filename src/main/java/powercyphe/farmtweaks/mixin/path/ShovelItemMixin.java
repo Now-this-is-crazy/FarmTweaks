@@ -1,7 +1,6 @@
 package powercyphe.farmtweaks.mixin.path;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.context.UseOnContext;
@@ -16,7 +15,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import powercyphe.farmtweaks.FarmTweaksUtil;
+import powercyphe.farmtweaks.util.FarmTweaksUtil;
 
 import java.util.Map;
 

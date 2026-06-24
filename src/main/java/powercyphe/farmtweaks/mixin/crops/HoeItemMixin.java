@@ -27,7 +27,7 @@ public class HoeItemMixin {
     protected static Map<Block, Pair<Predicate<UseOnContext>, Consumer<UseOnContext>>> TILLABLES;
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
-    private static void addTillingActions(CallbackInfo ci) {
+    private static void farmtweaks$addTillingActions(CallbackInfo ci) {
         TILLABLES.put(Blocks.MYCELIUM, Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.FARMLAND.defaultBlockState())));
         TILLABLES.put(Blocks.PODZOL, Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.FARMLAND.defaultBlockState())));
     }

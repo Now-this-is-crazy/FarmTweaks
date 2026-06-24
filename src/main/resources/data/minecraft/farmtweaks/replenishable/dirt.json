@@ -1,0 +1,5 @@
+{
+  "allowed": true,
+  "replenished": "minecraft:grass_block",
+  "items": "#farmtweaks:grass_seeds"
+}

@@ -4,11 +4,11 @@
   "farmtweaks.midnightconfig.fastLeafDecay": "Fast Leaf Decay",
   "farmtweaks.midnightconfig.fastLeafDecay.tooltip": "Whether or not leaves should decay faster.",
 
-  "farmtweaks.midnightconfig.allowAlternateHoeUse": "Allow Alternate Hoe Use",
-  "farmtweaks.midnightconfig.allowAlternateHoeUse.tooltip": "Whether or not players can use the Interact key to harvest crops. \nHarvesting this way will replant crops automatically.",
+  "farmtweaks.midnightconfig.allowAlternateHarvest": "Allow Alternate Harvest",
+  "farmtweaks.midnightconfig.allowAlternateHarvest.tooltip": "Whether or not players can use the Interact key to harvest crops. \nHarvesting this way will replant crops automatically.",
 
-  "farmtweaks.midnightconfig.tieredAlternateHoeUse": "Tiered Alternate Hoe Use",
-  "farmtweaks.midnightconfig.tieredAlternateHoeUse.tooltip": "Whether or not higher tiered hoes should harvest more crops.",
+  "farmtweaks.midnightconfig.rangedAlternateHarvest": "Ranged Alternate Harvest",
+  "farmtweaks.midnightconfig.rangedAlternateHarvest.tooltip": "Whether or not the alternate harvest should include the range tag.",
 
   "farmtweaks.midnightconfig.allowFarmlandTrampling": "Allow Trampling of Farmland",
   "farmtweaks.midnightconfig.allowFarmlandTrampling.tooltip": "Whether or not Entities can trample farmland.",
@@ -16,8 +16,8 @@
   "farmtweaks.midnightconfig.smartPathMaking": "Smart Path Making",
   "farmtweaks.midnightconfig.smartPathMaking.tooltip": "Whether or not Dirt Paths should be easier to make.",
 
-  "farmtweaks.midnightconfig.allowGrassReplenishment": "Allow Grass Conversion",
-  "farmtweaks.midnightconfig.allowGrassReplenishment.tooltip": "Whether or not players can convert dirt into grass using seeds. Different Dirt Types convert to different grass types. \n\n§8Usable Seeds can be modified using a datapack.",
+  "farmtweaks.midnightconfig.allowReplenishment": "Allow Replenishing",
+  "farmtweaks.midnightconfig.allowReplenishment.tooltip": "Whether or not players can replenish blocks like dirt.",
 
   "farmtweaks.midnightconfig.cropExperienceChance": "Crop Experience Chance",
   "farmtweaks.midnightconfig.cropExperienceChance.tooltip": "The chance of crops dropping experience when harvested.",
@@ -29,11 +29,5 @@
   "farmtweaks.midnightconfig.nonBonemealableBlocks.tooltip": "Blocks that cannot be bonemealed.",
 
   "farmtweaks.midnightconfig.dispensableItems": "Dispensable Items",
-  "farmtweaks.midnightconfig.dispensableItems.tooltip": "Items that can be placed using a dispenser. Can be updated by reloading the world.",
-
-  "farmtweaks.midnightconfig.harvestableBlocks": "Harvestable Blocks",
-  "farmtweaks.midnightconfig.harvestableBlocks.tooltip": "Blocks that can be harvested using the alternate hoe use. \n§cThis only works with blocks that support the §nage§c state!"
-
-
-
+  "farmtweaks.midnightconfig.dispensableItems.tooltip": "Items that can be placed using a dispenser. Can be updated by reloading the world."
 }

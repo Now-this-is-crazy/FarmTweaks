@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import powercyphe.farmtweaks.FarmTweaksUtil;
+import powercyphe.farmtweaks.util.FarmTweaksUtil;
 
 import java.util.Collection;
 import java.util.concurrent.CompletableFuture;

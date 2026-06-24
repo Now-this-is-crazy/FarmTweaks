@@ -11,10 +11,10 @@ public class FarmTweaksConfig extends MidnightConfig {
     public static boolean fastLeafDecay = true;
 
     @Entry
-    public static boolean allowAlternateHoeUse = true;
+    public static boolean allowAlternateHarvest = true;
 
     @Entry
-    public static boolean tieredAlternateHoeUse = false;
+    public static boolean rangedAlternateHarvest = true;
 
     @Entry
     public static boolean allowFarmlandTrampling = false;
@@ -23,9 +23,9 @@ public class FarmTweaksConfig extends MidnightConfig {
     public static boolean smartPathMaking = true;
 
     @Entry
-    public static boolean allowGrassReplenishment = true;
+    public static boolean allowReplenishment = true;
 
-    @Entry
+    @Entry(min = 0, max = 100, isSlider = true)
     public static int cropExperienceChance = 50;
 
     @Entry
@@ -48,16 +48,6 @@ public class FarmTweaksConfig extends MidnightConfig {
             "minecraft:pumpkin_seeds",
             "minecraft:pitcher_pod",
             "minecraft:torchflower_seeds",
-            "minecraft:nether_wart"
-    );
-
-
-    @Entry
-    public static List<String> harvestableBlocks = Arrays.asList(
-            "minecraft:wheat",
-            "minecraft:beetroots",
-            "minecraft:carrots",
-            "minecraft:potatoes",
             "minecraft:nether_wart"
     );
 }

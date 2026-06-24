@@ -16,27 +16,27 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import powercyphe.farmtweaks.FarmTweaksUtil;
+import powercyphe.farmtweaks.util.FarmTweaksUtil;
 
 @Mixin(Block.class)
 public class BlockMixin {
     @Inject(method = "playerDestroy", at = @At("HEAD"))
-    private void afterBreakMixin(Level world, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci) {
+    private void farmtweaks$dropExperience(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci) {
             if (state.getBlock() instanceof CropBlock) {
                 if (((CropBlock) state.getBlock()).isMaxAge(state)) {
-                    FarmTweaksUtil.dropExp(world, pos);
+                    FarmTweaksUtil.dropExp(level, pos);
                 }
             }
     }
     @Inject(method = "playerWillDestroy", at = @At("HEAD"))
-    private void onBreakMixin(Level world, BlockPos pos, BlockState state, Player player, CallbackInfoReturnable<BlockState> cir) {
+    private void farmtweaks$dropExperience(Level level, BlockPos pos, BlockState state, Player player, CallbackInfoReturnable<BlockState> cir) {
             if ((state.is(Blocks.MELON) || state.is(Blocks.PUMPKIN)) && !player.isCreative()) {
                 for (Direction direction : Direction.values()) {
                     if (direction.getAxis() != Direction.Axis.Y) {
                         BlockPos blockPos = pos.relative(direction.getOpposite());
-                        if (world.getBlockState(blockPos).getBlock() instanceof AttachedStemBlock) {
-                            if (world.getBlockState(blockPos).getValue(AttachedStemBlock.FACING) == direction) {
-                                FarmTweaksUtil.dropExp(world, pos);
+                        if (level.getBlockState(blockPos).getBlock() instanceof AttachedStemBlock) {
+                            if (level.getBlockState(blockPos).getValue(AttachedStemBlock.FACING) == direction) {
+                                FarmTweaksUtil.dropExp(level, pos);
 
                             }
                         }

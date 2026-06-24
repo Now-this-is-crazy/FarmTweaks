@@ -5,19 +5,16 @@ import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.ItemEvents;
-import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.minecraft.core.NonNullList;
-import net.minecraft.core.registries.Registries;
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 import net.minecraft.resources.Identifier;
-import net.minecraft.tags.TagKey;
-import net.minecraft.util.Tuple;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.server.packs.PackType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import powercyphe.farmtweaks.event.*;
 import powercyphe.farmtweaks.init.FTTags;
+import powercyphe.farmtweaks.reloadlistener.AltHarvestReloadListener;
+import powercyphe.farmtweaks.reloadlistener.HarvestableReloadListener;
+import powercyphe.farmtweaks.reloadlistener.ReplenishableReloadListener;
 
 public class FarmTweaks implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("farmtweaks");
@@ -26,12 +23,19 @@ public class FarmTweaks implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		MidnightConfig.init(MOD_ID, FarmTweaksConfig.class);
+
+		// DO THE DISPENSER DATADRIVEN !!!!
+
+		ResourceLoader.get(PackType.SERVER_DATA).registerReloadListener(id("alt_harvest"), new AltHarvestReloadListener());
+		ResourceLoader.get(PackType.SERVER_DATA).registerReloadListener(id("harvestable"), new HarvestableReloadListener());
+		ResourceLoader.get(PackType.SERVER_DATA).registerReloadListener(id("replenishable"), new ReplenishableReloadListener());
+
 		FTTags.init();
 
 		ItemEvents.USE_ON.register(new AlternateHoeUseEvent());
 		ItemEvents.USE_ON.register(new BonemealDuplicationEvent());
 		ItemEvents.USE_ON.register(new BonemealGrowEvent());
-		ItemEvents.USE_ON.register(new ConvertToGrassEvent());
+		ItemEvents.USE_ON.register(new ReplenishableEvent());
 
         ServerTickEvents.END_LEVEL_TICK.register(LeafDecayEvent.get());
 	}

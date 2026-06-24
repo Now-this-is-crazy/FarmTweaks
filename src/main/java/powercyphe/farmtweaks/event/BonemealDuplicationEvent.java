@@ -13,7 +13,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jspecify.annotations.Nullable;
-import powercyphe.farmtweaks.FarmTweaksUtil;
+import powercyphe.farmtweaks.util.FarmTweaksUtil;
 import powercyphe.farmtweaks.init.FTTags;
 
 public class BonemealDuplicationEvent implements ItemEvents.UseOnCallback {
@@ -29,7 +29,7 @@ public class BonemealDuplicationEvent implements ItemEvents.UseOnCallback {
         ItemStack stack = context.getItemInHand();
 
         if (FarmTweaksUtil.canBonemeal(state.getBlock()) && stack.is(Items.BONE_MEAL)) {
-            if (state.is(FTTags.Blocks.BONEMEAL_DUPLICATABLE)) {
+            if (state.is(FTTags.BONEMEAL_DUPLICATABLE)) {
 
                 ItemStack item = state.getBlock().asItem().getDefaultInstance();
                 ItemEntity itemEntity = new ItemEntity(level, blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, item);

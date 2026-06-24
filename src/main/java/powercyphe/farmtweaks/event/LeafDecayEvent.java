@@ -1,14 +1,10 @@
 package powercyphe.farmtweaks.event;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.core.BlockBox;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import powercyphe.farmtweaks.mixin.accessor.LeavesBlockAccessor;
@@ -60,9 +56,9 @@ public class LeafDecayEvent implements ServerTickEvents.EndLevelTick {
     }
 
     public void queueNearby(ServerLevel level, LeavesBlock block, BlockPos rootPos) {
-        for (Direction dir1 : Direction.values()) {
-            for (Direction dir2 : Direction.values()) {
-                BlockPos adjPos = rootPos.relative(dir1).relative(dir2, dir1 == dir2 ? 0 : 1);
+        BlockBox box = BlockBox.of(rootPos.offset(-1, -1, -1), rootPos.offset(1, 1, 1));
+        for (BlockPos adjPos : box) {
+            if (!adjPos.equals(rootPos)) {
                 BlockState adjState = level.getBlockState(adjPos);
 
                 if (adjState.is(block) && ((LeavesBlockAccessor) block).farmtweaks$decaying(adjState)) {
