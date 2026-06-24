@@ -17,18 +17,16 @@ import powercyphe.farmtweaks.event.LeafDecayEvent;
 @Mixin(LeavesBlock.class)
 public abstract class LeavesBlockMixin extends Block {
     @Shadow
-    protected abstract boolean decaying(BlockState blockState);
+    protected abstract boolean decaying(BlockState state);
 
     public LeavesBlockMixin(Properties properties) {
         super(properties);
     }
 
     @Inject(method = "randomTick", at = @At("HEAD"))
-    private void farmtweaks$fastLeafDecay(BlockState state, ServerLevel level, BlockPos blockPos, RandomSource random, CallbackInfo ci) {
-        LeavesBlock leavesBlock = (LeavesBlock) (Object) this;
-
+    private void farmtweaks$fastLeafDecay(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
         if (FarmTweaksConfig.fastLeafDecay && this.decaying(state)) {
-            LeafDecayEvent.get().queueNearby(level, leavesBlock, blockPos);
+            LeafDecayEvent.get().queueNearby(level, pos);
         }
     }
 }
