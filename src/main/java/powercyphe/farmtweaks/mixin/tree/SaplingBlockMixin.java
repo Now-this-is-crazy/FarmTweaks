@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.grower.TreeGrower;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import powercyphe.farmtweaks.util.FarmTweaksUtil;
 
 import java.util.Optional;
 
@@ -25,7 +26,7 @@ public class SaplingBlockMixin {
     @Expression("@(?).growTree(?, ?, ?, ?, ?)")
     @ModifyExpressionValue(method = "advanceTree", at = @At("MIXINEXTRAS:EXPRESSION"))
     private TreeGrower farmtweaks$swampTree(TreeGrower original, ServerLevel level, BlockPos pos) {
-        if (original == TreeGrower.OAK && level.getBiome(pos).is(Biomes.SWAMP)) {
+        if (FarmTweaksUtil.shouldGrowSwampTree() && original == TreeGrower.OAK && level.getBiome(pos).is(Biomes.SWAMP)) {
             return SWAMP_OAK;
         }
         return original;

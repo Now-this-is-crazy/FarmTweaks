@@ -14,8 +14,9 @@ Farm Tweaks is a fabric mod that enhances the Vanilla Minecraft farming experien
 - *Farmland can no longer get trampled by entities
 - *You can now bonemeal more blocks to either grow or duplicate them, examples being sugarcane & small flowers
 - *Path blocks are now easier to create when there are blocks above it
+- *Oak Saplings now grow into Swamp Trees in the Swamp Biome
 - Mycelium and Podzol are now tillable
-- Oak Saplings now grow into Swamp Trees in the Swamp Biome
+
 
 *Modifiable in the Config / via Datapacks
 

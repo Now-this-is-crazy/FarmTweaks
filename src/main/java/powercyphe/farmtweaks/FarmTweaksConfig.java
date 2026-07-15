@@ -32,6 +32,9 @@ public class FarmTweaksConfig extends MidnightConfig {
     public static boolean enhancedBonemeal = true;
 
     @Entry
+    public static boolean saplingsGrowSwampTrees = true;
+
+    @Entry
     public static List<String> nonBonemealableBlocks = Arrays.asList(
             "minecraft:wither_rose",
             "minecraft:torchflower",

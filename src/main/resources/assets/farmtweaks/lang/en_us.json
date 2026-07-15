@@ -14,16 +14,19 @@
   "farmtweaks.midnightconfig.allowFarmlandTrampling.tooltip": "Whether or not Entities can trample farmland.",
 
   "farmtweaks.midnightconfig.smartPathMaking": "Smart Path Making",
-  "farmtweaks.midnightconfig.smartPathMaking.tooltip": "Whether or not Dirt Paths should be easier to make.",
+  "farmtweaks.midnightconfig.smartPathMaking.tooltip": "Whether Dirt Paths should able to be made by clicking the block above.",
 
   "farmtweaks.midnightconfig.allowReplenishment": "Allow Replenishing",
-  "farmtweaks.midnightconfig.allowReplenishment.tooltip": "Whether or not players can replenish blocks like dirt.",
+  "farmtweaks.midnightconfig.allowReplenishment.tooltip": "Whether players can replenish blocks like dirt.",
 
   "farmtweaks.midnightconfig.cropExperienceChance": "Crop Experience Chance",
   "farmtweaks.midnightconfig.cropExperienceChance.tooltip": "The chance of crops dropping experience when harvested.",
 
   "farmtweaks.midnightconfig.enhancedBonemeal": "Enhanced Bonemeal",
-  "farmtweaks.midnightconfig.enhancedBonemeal.tooltip": "Whether or not more plants should be bonemealable. Certain blocks can be disabled by adding them to the 'Non-Bonemealable Blocks'",
+  "farmtweaks.midnightconfig.enhancedBonemeal.tooltip": "Whether more plants should be bonemealable. Certain blocks can be disabled by adding them to the 'Non-Bonemealable Blocks'",
+
+  "farmtweaks.midnightconfig.saplingsGrowSwampTrees": "Saplings grow Swamp Trees",
+  "farmtweaks.midnightconfig.saplingsGrowSwampTrees.tooltip": "Whether Swamp Trees should grow from oak saplings in a swamp.",
 
   "farmtweaks.midnightconfig.nonBonemealableBlocks": "Non-Bonemealable Blocks",
   "farmtweaks.midnightconfig.nonBonemealableBlocks.tooltip": "Blocks that cannot be bonemealed.",

@@ -64,6 +64,10 @@ public class FarmTweaksUtil {
         return getParsedList(BuiltInRegistries.BLOCK, FarmTweaksConfig.nonBonemealableBlocks);
     }
 
+    public static boolean shouldGrowSwampTree() {
+        return FarmTweaksConfig.saplingsGrowSwampTrees;
+    }
+
     public static List<Item> getDispensableItems() {
         return getParsedList(BuiltInRegistries.ITEM, FarmTweaksConfig.dispensableItems);
     }
