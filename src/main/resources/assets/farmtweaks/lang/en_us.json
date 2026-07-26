@@ -4,6 +4,9 @@
   "farmtweaks.midnightconfig.fastLeafDecay": "Fast Leaf Decay",
   "farmtweaks.midnightconfig.fastLeafDecay.tooltip": "Whether or not leaves should decay faster.",
 
+  "farmtweaks.midnightconfig.leafDecaySpeed": "Leaf Decay Speed",
+  "farmtweaks.midnightconfig.leafDecaySpeed.tooltip": "How much faster the leaf decay should happen when Fast Leaf Decay is enabled. \nThis will affect performance.",
+
   "farmtweaks.midnightconfig.allowAlternateHarvest": "Allow Alternate Harvest",
   "farmtweaks.midnightconfig.allowAlternateHarvest.tooltip": "Whether or not players can use the Interact key to harvest crops. \nHarvesting this way will replant crops automatically.",
 

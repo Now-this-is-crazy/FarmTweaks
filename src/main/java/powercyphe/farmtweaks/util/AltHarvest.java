@@ -25,7 +25,7 @@ public record AltHarvest(boolean allowed, double range, int damage) {
     );
 
     public static boolean isAllowed(Item item) {
-        return FarmTweaksConfig.allowAlternateHarvest && VALUES.containsKey(item);
+        return FarmTweaksUtil.allowAltHarvest() && VALUES.containsKey(item);
     }
 
     public static double getRange(Item item) {

@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import powercyphe.farmtweaks.FarmTweaksConfig;
 import powercyphe.farmtweaks.event.LeafDecayEvent;
+import powercyphe.farmtweaks.util.FarmTweaksUtil;
 
 @Mixin(LeavesBlock.class)
 public abstract class LeavesBlockMixin extends Block {
@@ -25,7 +26,7 @@ public abstract class LeavesBlockMixin extends Block {
 
     @Inject(method = "randomTick", at = @At("HEAD"))
     private void farmtweaks$fastLeafDecay(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
-        if (FarmTweaksConfig.fastLeafDecay && this.decaying(state)) {
+        if (FarmTweaksUtil.fastLeafDecay() && this.decaying(state)) {
             LeafDecayEvent.get().queueNearby(level, pos);
         }
     }

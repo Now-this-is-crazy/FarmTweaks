@@ -9,6 +9,8 @@ public class FarmTweaksConfig extends MidnightConfig {
 
     @Entry
     public static boolean fastLeafDecay = true;
+    @Entry(min = 1, max = 10, isSlider = true)
+    public static int leafDecaySpeed = 3;
 
     @Entry
     public static boolean allowAlternateHarvest = true;
