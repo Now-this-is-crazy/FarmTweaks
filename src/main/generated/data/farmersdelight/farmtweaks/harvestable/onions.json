@@ -1,0 +1,22 @@
+{
+  "experienceDrop": {
+    "chance": 0.2,
+    "experience": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 3,
+      "min_inclusive": 1
+    }
+  },
+  "harvestable": [
+    {
+      "name": "age",
+      "value": "0"
+    }
+  ],
+  "required": [
+    {
+      "name": "age",
+      "value": "7"
+    }
+  ]
+}

@@ -13,6 +13,9 @@
   "farmtweaks.midnightconfig.rangedAlternateHarvest": "Ranged Alternate Harvest",
   "farmtweaks.midnightconfig.rangedAlternateHarvest.tooltip": "Whether or not the alternate harvest should include the range tag.",
 
+  "farmtweaks.midnightconfig.cropExperience": "Crop Experience",
+  "farmtweaks.midnightconfig.cropExperience.tooltip": "Controls whether or not crops should drop experience.",
+
   "farmtweaks.midnightconfig.allowFarmlandTrampling": "Allow Trampling of Farmland",
   "farmtweaks.midnightconfig.allowFarmlandTrampling.tooltip": "Whether or not Entities can trample farmland.",
 
@@ -21,9 +24,6 @@
 
   "farmtweaks.midnightconfig.allowReplenishment": "Allow Replenishing",
   "farmtweaks.midnightconfig.allowReplenishment.tooltip": "Whether players can replenish blocks like dirt.",
-
-  "farmtweaks.midnightconfig.cropExperienceChance": "Crop Experience Chance",
-  "farmtweaks.midnightconfig.cropExperienceChance.tooltip": "The chance of crops dropping experience when harvested.",
 
   "farmtweaks.midnightconfig.enhancedBonemeal": "Enhanced Bonemeal",
   "farmtweaks.midnightconfig.enhancedBonemeal.tooltip": "Whether more plants should be bonemealable. Certain blocks can be disabled by adding them to the 'Non-Bonemealable Blocks'",

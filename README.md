@@ -26,11 +26,11 @@ Farm Tweaks is a fabric mod that enhances the Vanilla Minecraft farming experien
 File Path: ``data/<mod-id>/farmtweaks/alt_harvest/<item-id>.json``
 
 Data Options:
-- `allowed` - Whether the tool can use the alternate harvest
-- `range` - The harvest range
-- `damage` - Durability damage received after use
+- `allowed`: Whether the tool can use the alternate harvest
+- `range`: The harvest range
+- `damage`: Durability damage received after use
 
-[`copper_hoe.json`](src/main/resources/data/minecraft/farmtweaks/alt_harvest/copper_hoe.json):
+Example:
 ```
 {
   "allowed": true,
@@ -43,14 +43,17 @@ Data Options:
 File Path: ``data/<mod-id>/farmtweaks/harvestable/<block-id>.json``
 
 Data Options:
-- `allowed` - Whether the tool can use the alternate harvest
-- `required` - The required block properties
-- `harvested` - The block properties to set / Blockstate to replace the block with
+- `altHarvest`: Whether the tool can use the alternate harvest
+- `required`: The required block properties
+- `harvested`: The block properties to set / Blockstate to replace the block with
+- `experienceDrop`: Dropped Experience by the crop
+  - `chance`: Chance to drop experience
+  - `experience`: Amount of experience to drop
 
-[`wheat.json`](src/main/resources/data/minecraft/farmtweaks/harvestable/wheat.json):
+Example:
 ```
 {
-  "allowed": true,
+  "altHarvest": true,
   "required": [
     {
       "name": "age",
@@ -62,7 +65,15 @@ Data Options:
       "name": "age",
       "value": "0"
     }
-  ]
+  ],
+  "experienceDrop": {
+    "chance": 0.2,
+    "experience": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 3,
+      "min_inclusive": 1
+    }
+  }
 }
 ```
 
@@ -86,11 +97,11 @@ for Blockstates:
 File Path: ``data/<mod-id>/farmtweaks/harvestable/<block-id>.json``
 
 Data Options:
-- `allowed` - Whether the block can be replenished
-- `replenished` - The replenished Block / Blockstate
-- `items` - List of Items or Item Tag
+- `allowed`: Whether the block can be replenished
+- `replenished`: The replenished Block / Blockstate
+- `items`: List of Items or Item Tag
 
-[`dirt.json`](src/main/resources/data/minecraft/farmtweaks/replenishable/dirt.json):
+Example:
 ```
 {
   "allowed": true,

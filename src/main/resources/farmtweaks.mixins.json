@@ -3,12 +3,12 @@
   "mixinextras": {
     "minVersion": "0.5.0"
   },
-  "package": "powercyphe.farmtweaks.mixin",
+  "package": "dev.powercyphe.farmtweaks.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "FarmlandBlockMixin",
+    "accessor.IntegerPropertyAccessor",
     "accessor.LeavesBlockAccessor",
-    "crops.BlockMixin",
     "crops.HoeItemMixin",
     "dispenser.MinecraftServerMixin",
     "leafdecay.LeavesBlockMixin",

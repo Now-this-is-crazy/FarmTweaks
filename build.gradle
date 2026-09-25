@@ -22,6 +22,12 @@ loom {
 
 }
 
+fabricApi {
+	configureDataGeneration() {
+		client = false;
+	}
+}
+
 repositories {
 	maven {
         name = "Modrinth"
@@ -37,6 +43,9 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 	implementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
+
+	// Built-in Compat
+	implementation "maven.modrinth:farmers-delight-refabricated:${project.fdr_version}"
 }
 
 processResources {

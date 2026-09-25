@@ -24,7 +24,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"powercyphe.farmtweaks.FarmTweaks"
+			"dev.powercyphe.farmtweaks.FarmTweaks"
+		],
+		"fabric-datagen": [
+			"dev.powercyphe.farmtweaks.datagen.FTDatagen"
 		]
 	},
 	"mixins": [

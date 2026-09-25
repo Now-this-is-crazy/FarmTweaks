@@ -1,0 +1,14 @@
+{
+  "altHarvest": false,
+  "experienceDrop": {
+    "chance": 0.3,
+    "cropCondition": "has_stem",
+    "experience": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 5,
+      "min_inclusive": 3
+    }
+  },
+  "harvestable": [],
+  "required": []
+}
