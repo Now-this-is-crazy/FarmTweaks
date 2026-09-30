@@ -1,5 +1,6 @@
 package dev.powercyphe.farmtweaks.init;
 
+import dev.powercyphe.farmtweaks.reloadlistener.data.Harvestable;
 import dev.powercyphe.farmtweaks.reloadlistener.data.Replenishable;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -14,8 +15,13 @@ public interface FTReplenishables {
     
     static void init() {}
 
+    @Deprecated(forRemoval = true)
     static ResourceKey<Replenishable> register(Block block) {
         return register(block.builtInRegistryHolder().key().identifier());
+    }
+
+    static ResourceKey<Replenishable> register(ResourceKey<Block> itemId) {
+        return register(itemId.identifier());
     }
 
     static ResourceKey<Replenishable> register(Identifier id) {

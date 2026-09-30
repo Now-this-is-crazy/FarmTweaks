@@ -9,10 +9,9 @@
     "FarmlandBlockMixin",
     "accessor.IntegerPropertyAccessor",
     "accessor.LeavesBlockAccessor",
-    "crops.HoeItemMixin",
     "dispenser.MinecraftServerMixin",
     "leafdecay.LeavesBlockMixin",
-    "path.ShovelItemMixin",
+    "path.BlockTransformerMixin",
     "tree.SaplingBlockMixin"
   ],
   "injectors": {

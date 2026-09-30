@@ -1,8 +1,10 @@
 package dev.powercyphe.farmtweaks.init;
 
+import dev.powercyphe.farmtweaks.reloadlistener.data.AltHarvest;
 import dev.powercyphe.farmtweaks.reloadlistener.data.Harvestable;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
@@ -18,8 +20,13 @@ public interface FTHarvestables {
 
     static void init() {}
 
+    @Deprecated(forRemoval = true)
     static ResourceKey<Harvestable> register(Block block) {
         return register(block.builtInRegistryHolder().key().identifier());
+    }
+
+    static ResourceKey<Harvestable> register(ResourceKey<Block> itemId) {
+        return register(itemId.identifier());
     }
 
     static ResourceKey<Harvestable> register(Identifier id) {

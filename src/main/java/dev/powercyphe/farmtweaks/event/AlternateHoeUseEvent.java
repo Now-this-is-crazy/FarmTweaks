@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -14,6 +15,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -43,9 +45,9 @@ public class AlternateHoeUseEvent implements ItemEvents.UseOnCallback {
         Item item = stack.getItem();
 
         if (AltHarvest.isAllowed(item)) {
-            if (level instanceof ServerLevel serverLevel) {
+            if (level instanceof ServerLevel serverLevel && player instanceof ServerPlayer serverPlayer) {
 
-                if (tryHarvest(serverLevel, player, state, blockPos, stack)) {
+                if (tryHarvest(serverLevel, serverPlayer, state, blockPos, stack)) {
                     if (FarmTweaksUtil.rangedAltHarvest()) {
                         double range = AltHarvest.getRange(item);
                         int rangeI = (int) (range * 2);
@@ -59,20 +61,20 @@ public class AlternateHoeUseEvent implements ItemEvents.UseOnCallback {
                                     BlockState hState = level.getBlockState(hPos);
 
                                     if (hState.is(state.getBlock())) {
-                                        tryHarvest(serverLevel, player, hState, hPos, stack);
+                                        tryHarvest(serverLevel, serverPlayer, hState, hPos, stack);
                                     }
                                 }
                             }
                         }
                     }
 
-                    serverLevel.playSound(null, blockPos, SoundEvents.HOE_TILL, SoundSource.BLOCKS);
+                    serverLevel.playSound(null, blockPos, SoundEvents.HOE_TILL.value(), SoundSource.BLOCKS);
                     serverLevel.sendParticles(ParticleTypes.SWEEP_ATTACK,
                             blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5,
                             1, 0, 0, 0, 1
                     );
                     if (player != null) {
-                        player.swing(hand, true);
+                        player.swing(hand, SwingAnimation.DEFAULT, true);
                         stack.hurtAndBreak(AltHarvest.getDamage(item), player, hand.asEquipmentSlot());
                     }
                     return InteractionResult.SUCCESS_SERVER;
@@ -82,7 +84,7 @@ public class AlternateHoeUseEvent implements ItemEvents.UseOnCallback {
         return null;
     }
 
-    public static boolean tryHarvest(ServerLevel level, Player player, BlockState state, BlockPos blockPos, ItemStack heldStack) {
+    public static boolean tryHarvest(ServerLevel level, ServerPlayer player, BlockState state, BlockPos blockPos, ItemStack heldStack) {
         Block block = state.getBlock();
         Optional<BlockState> harvested = Harvestable.getHarvested(state);
 

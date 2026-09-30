@@ -56,7 +56,7 @@ public class LeafDecayEvent implements ServerTickEvents.EndLevelTick {
 
                     if (adjState.getBlock() instanceof LeavesBlock leavesBlock
                             && ((LeavesBlockAccessor) leavesBlock).farmtweaks$decaying(adjState)) {
-                        this.queue(level, new BlockPos(adjPos));
+                        this.queue(level, new BlockPos(adjPos.getX(), adjPos.getY(), adjPos.getZ()));
 
                     }
                 }

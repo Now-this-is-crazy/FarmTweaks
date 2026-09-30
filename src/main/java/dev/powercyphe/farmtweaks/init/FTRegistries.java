@@ -15,13 +15,12 @@ public interface FTRegistries {
     ResourceKey<Registry<AltHarvest>> ALT_HARVEST = register("alt_harvest", AltHarvest.CODEC);
     ResourceKey<Registry<Harvestable>> HARVESTABLE = register("harvestable", Harvestable.CODEC);
     ResourceKey<Registry<Replenishable>> REPLENISHABLE = register("replenishable", Replenishable.CODEC);
-    ResourceKey<Registry<ExperienceDrop>> EXPERIENCE_DROP = register("experience_drop", ExperienceDrop.CODEC);
 
     static void init() {}
 
     static <T> ResourceKey<Registry<T>> register(String name, Codec<T> codec) {
         ResourceKey<Registry<T>> registry = ResourceKey.createRegistryKey(FarmTweaks.id(name));
-        DynamicRegistries.register(registry, codec);
+        DynamicRegistries.registerReloadable(registry, codec);
         return registry;
     }
 }

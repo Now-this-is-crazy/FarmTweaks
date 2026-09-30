@@ -2,6 +2,7 @@ package dev.powercyphe.farmtweaks.reloadlistener;
 
 import com.mojang.serialization.JsonOps;
 import dev.powercyphe.farmtweaks.init.FTRegistries;
+import dev.powercyphe.farmtweaks.util.FarmTweaksUtil;
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 import net.fabricmc.fabric.api.resource.v1.reloader.SimpleReloadListener;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -18,7 +19,7 @@ public class HarvestableReloadListener extends SimpleReloadListener<Map<Block, H
     @Override
     protected Map<Block, Harvestable> prepare(SharedState state) {
         Map<Identifier, Harvestable> raw = new HashMap<>();
-        SimpleJsonResourceReloadListener.scanDirectory(state.resourceManager(),
+        FarmTweaksUtil.scanDirectory(state.resourceManager(),
                 FileToIdConverter.registry(FTRegistries.HARVESTABLE),
                 state.get(ResourceLoader.REGISTRY_LOOKUP_KEY).createSerializationContext(JsonOps.INSTANCE),
                 Harvestable.CODEC, raw

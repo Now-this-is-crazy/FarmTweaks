@@ -1,0 +1,14 @@
+{
+  "values": [
+    "minecraft:lily_pad",
+    "minecraft:spore_blossom",
+    "minecraft:hanging_roots",
+    "minecraft:nether_sprouts",
+    "minecraft:crimson_roots",
+    "minecraft:warped_roots",
+    "#minecraft:small_flowers",
+    "#minecraft:corals",
+    "#minecraft:coral_plants",
+    "#minecraft:wall_corals"
+  ]
+}
