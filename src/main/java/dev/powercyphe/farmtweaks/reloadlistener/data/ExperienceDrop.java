@@ -58,6 +58,9 @@ public record ExperienceDrop(IntProvider experience, float chance, Optional<Crop
     }
 
     public enum CropCondition implements StringRepresentable {
+        HARVESTABLE_STATE((state, blockPos, level) ->
+                Harvestable.getHarvested(state).isPresent()
+        ),
         HAS_STEM((state, blockPos, level) -> {
             for (Direction direction : Direction.Plane.HORIZONTAL) {
                 BlockPos stemPos = blockPos.relative(direction);

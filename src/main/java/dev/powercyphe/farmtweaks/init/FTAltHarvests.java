@@ -5,7 +5,6 @@ import net.minecraft.references.ItemIds;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 
 public interface FTAltHarvests {
 
@@ -19,13 +18,8 @@ public interface FTAltHarvests {
 
     static void init() {}
 
-    @Deprecated(forRemoval = true)
-    static ResourceKey<AltHarvest> register(Item item) {
-        return register(item.builtInRegistryHolder().key().identifier());
-    }
-
-    static ResourceKey<AltHarvest> register(ResourceKey<Item> itemId) {
-        return register(itemId.identifier());
+    static ResourceKey<AltHarvest> register(ResourceKey<Item> itemKey) {
+        return register(itemKey.identifier());
     }
 
     static ResourceKey<AltHarvest> register(Identifier id) {

@@ -1,6 +1,7 @@
 {
   "experienceDrop": {
     "chance": 0.2,
+    "cropCondition": "harvestable_state",
     "experience": {
       "type": "minecraft:uniform",
       "max_inclusive": 3,

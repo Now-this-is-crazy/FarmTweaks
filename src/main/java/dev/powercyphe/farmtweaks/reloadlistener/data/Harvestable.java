@@ -58,7 +58,7 @@ public record Harvestable(boolean altHarvest, List<PropertySet> required, Either
         return new Harvestable(true, 
                 List.of(new PropertySet(ageProperty.getName(), accessor.farmtweaks$max())),
                 List.of(new PropertySet(ageProperty.getName(), accessor.farmtweaks$min())),
-                new ExperienceDrop(1, 3, 0.2F)
+                new ExperienceDrop(1, 3, 0.2F, ExperienceDrop.CropCondition.HARVESTABLE_STATE)
         );
     }
 

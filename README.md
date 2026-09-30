@@ -49,6 +49,7 @@ Data Options:
 - `experienceDrop`: Dropped Experience by the crop
   - `chance`: Chance to drop experience
   - `experience`: Amount of experience to drop
+  - `cropCondition*`: Crop Condition, either 'harvestable_state' or 'has_stem'
 
 Example:
 ```

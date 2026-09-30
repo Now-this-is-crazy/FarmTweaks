@@ -5,18 +5,19 @@ import dev.powercyphe.farmtweaks.reloadlistener.data.Harvestable;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
+import vectorwing.farmersdelight.common.references.ModBlockItemIds;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 
 public interface FDHarvestables {
 
-    ResourceKey<Harvestable> ONIONS = register(ModBlocks.ONION_CROP.get());
-    ResourceKey<Harvestable> CABBAGES = register(ModBlocks.CABBAGE_CROP.get());
-    ResourceKey<Harvestable> RICE_PANICLES = register(ModBlocks.RICE_CROP_PANICLES.get());
+    ResourceKey<Harvestable> ONIONS = register(ModBlockItemIds.ONION_CROP.block());
+    ResourceKey<Harvestable> CABBAGES = register(ModBlockItemIds.CABBAGE_CROP.block());
+    ResourceKey<Harvestable> RICE_PANICLES = register(ModBlockItemIds.RICE_CROP_PANICLES.block());
 
     static void init() {}
 
-    static ResourceKey<Harvestable> register(Block block) {
-        return register(block.builtInRegistryHolder().key().identifier());
+    static ResourceKey<Harvestable> register(ResourceKey<Block> blockKey) {
+        return register(blockKey.identifier());
     }
 
     static ResourceKey<Harvestable> register(Identifier id) {

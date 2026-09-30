@@ -33,6 +33,7 @@ public class FTHarvestableProvider extends FTDynamicRegistryProvider<Harvestable
         register(COCOA, Harvestable.crop(CocoaBlock.AGE));
         register(PUMPKIN, Harvestable.stemCrop());
         register(MELON, Harvestable.stemCrop());
+        register(NETHER_WART, Harvestable.crop(NetherWartBlock.AGE));
 
         if (FTBuiltInCompat.FARMERS_DELIGHT) {
             register(ONIONS, Harvestable.crop(OnionBlock.AGE));
