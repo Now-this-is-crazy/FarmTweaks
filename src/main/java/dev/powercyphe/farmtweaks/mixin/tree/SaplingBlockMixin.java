@@ -24,8 +24,8 @@ import java.util.Optional;
 public class SaplingBlockMixin {
 
     @Unique
-    private static final TreeGrower SWAMP_OAK = new TreeGrower("swamp_oak", WeightedList.of(TreeFeatures.SWAMP_OAK),
-            WeightedList.of(), WeightedList.of(), TreeFeatures.SWAMP_OAK);
+    private static final TreeGrower SWAMP_OAK = new TreeGrower("swamp_oak", Optional.empty(),
+            Optional.of(TreeFeatures.SWAMP_OAK), Optional.empty());
 
     @Definition(id = "growTree", method = "Lnet/minecraft/world/level/block/grower/TreeGrower;growTree(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/util/RandomSource;)Z")
     @Expression("@(?).growTree(?, ?, ?, ?, ?)")

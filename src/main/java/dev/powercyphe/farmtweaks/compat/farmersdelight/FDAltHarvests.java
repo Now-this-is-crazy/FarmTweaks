@@ -5,18 +5,23 @@ import dev.powercyphe.farmtweaks.reloadlistener.data.AltHarvest;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
-import vectorwing.farmersdelight.common.references.ModItemIds;
+import vectorwing.farmersdelight.common.registry.ModItems;
 
 public interface FDAltHarvests {
 
-    ResourceKey<AltHarvest> FLINT_KNIFE = register(ModItemIds.FLINT_KNIFE);
-    ResourceKey<AltHarvest> COPPER_KNIFE = register(ModItemIds.COPPER_KNIFE);
-    ResourceKey<AltHarvest> GOLDEN_KNIFE = register(ModItemIds.GOLDEN_KNIFE);
-    ResourceKey<AltHarvest> IRON_KNIFE = register(ModItemIds.IRON_KNIFE);
-    ResourceKey<AltHarvest> DIAMOND_KNIFE = register(ModItemIds.DIAMOND_KNIFE);
-    ResourceKey<AltHarvest> NETHERITE_KNIFE = register(ModItemIds.NETHERITE_KNIFE);
+    ResourceKey<AltHarvest> FLINT_KNIFE = register(ModItems.FLINT_KNIFE.get());
+    ResourceKey<AltHarvest> COPPER_KNIFE = register(ModItems.COPPER_KNIFE.get());
+    ResourceKey<AltHarvest> GOLDEN_KNIFE = register(ModItems.GOLDEN_KNIFE.get());
+    ResourceKey<AltHarvest> IRON_KNIFE = register(ModItems.IRON_KNIFE.get());
+    ResourceKey<AltHarvest> DIAMOND_KNIFE = register(ModItems.DIAMOND_KNIFE.get());
+    ResourceKey<AltHarvest> NETHERITE_KNIFE = register(ModItems.NETHERITE_KNIFE.get());
 
     static void init() {}
+
+    @Deprecated(forRemoval = true)
+    static ResourceKey<AltHarvest> register(Item item) {
+        return register(item.builtInRegistryHolder().key());
+    }
 
     static ResourceKey<AltHarvest> register(ResourceKey<Item> itemKey) {
         return register(itemKey.identifier());

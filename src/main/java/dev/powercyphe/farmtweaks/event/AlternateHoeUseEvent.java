@@ -68,13 +68,13 @@ public class AlternateHoeUseEvent implements ItemEvents.UseOnCallback {
                         }
                     }
 
-                    serverLevel.playSound(null, blockPos, SoundEvents.HOE_TILL.value(), SoundSource.BLOCKS);
+                    serverLevel.playSound(null, blockPos, SoundEvents.HOE_TILL, SoundSource.BLOCKS);
                     serverLevel.sendParticles(ParticleTypes.SWEEP_ATTACK,
                             blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5,
                             1, 0, 0, 0, 1
                     );
                     if (player != null) {
-                        player.swing(hand, SwingAnimation.DEFAULT, true);
+                        player.swing(hand, true);
                         stack.hurtAndBreak(AltHarvest.getDamage(item), player, hand.asEquipmentSlot());
                     }
                     return InteractionResult.SUCCESS_SERVER;

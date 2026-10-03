@@ -20,7 +20,7 @@ public interface FTRegistries {
 
     static <T> ResourceKey<Registry<T>> register(String name, Codec<T> codec) {
         ResourceKey<Registry<T>> registry = ResourceKey.createRegistryKey(FarmTweaks.id(name));
-        DynamicRegistries.registerReloadable(registry, codec);
+        DynamicRegistries.register(registry, codec);
         return registry;
     }
 }

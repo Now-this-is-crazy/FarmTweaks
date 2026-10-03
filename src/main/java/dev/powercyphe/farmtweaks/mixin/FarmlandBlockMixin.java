@@ -14,10 +14,10 @@ import dev.powercyphe.farmtweaks.util.FarmTweaksUtil;
 @Mixin(FarmlandBlock.class)
 public abstract class FarmlandBlockMixin {
 
-    @WrapOperation(method = "fallOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/FarmlandBlock;turnToBaseBlock(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"))
-    private void setToDirtMixin(FarmlandBlock instance, Entity sourceEntity, BlockState state, Level level, BlockPos pos, Operation<Void> original) {
+    @WrapOperation(method = "fallOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/FarmlandBlock;turnToDirt(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"))
+    private void setToDirtMixin(Entity sourceEntity, BlockState state, Level level, BlockPos pos, Operation<Void> original) {
         if (FarmTweaksUtil.allowFarmLandTrampling()) {
-            original.call(instance, sourceEntity, state, level, pos);
+            original.call(sourceEntity, state, level, pos);
         }
     }
 }

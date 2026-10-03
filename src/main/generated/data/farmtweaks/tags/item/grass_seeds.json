@@ -1,8 +1,6 @@
 {
-  "fabric:remove": [
-    "farmersdelight:rice"
-  ],
   "values": [
-    "#c:seeds"
+    "#c:seeds",
+    "farmersdelight:rice"
   ]
 }

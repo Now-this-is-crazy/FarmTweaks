@@ -8,11 +8,9 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.ItemEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
-import net.fabricmc.fabric.api.item.v1.BlockTransformerEvents;
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
-import net.minecraft.world.entity.player.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import dev.powercyphe.farmtweaks.event.*;
@@ -53,8 +51,6 @@ public class FarmTweaks implements ModInitializer {
 		PlayerBlockBreakEvents.CANCELED.register(CropExperienceEvent.INSTANCE);
 
         ServerTickEvents.END_LEVEL_TICK.register(LeafDecayEvent.get());
-
-		BlockTransformerEvents.MODIFY.register(id("smart_path_making"), new SmartPathMakingEvent());
 	}
 
 	public static Identifier id(String path) {

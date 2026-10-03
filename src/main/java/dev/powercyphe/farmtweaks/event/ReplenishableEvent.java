@@ -39,7 +39,7 @@ public class ReplenishableEvent implements ItemEvents.UseOnCallback {
                 if (opt.isPresent()) {
                     if (player != null) {
                         stack.consume(1, player);
-                        player.swing(hand, SwingAnimation.DEFAULT, true);
+                        player.swing(hand, true);
                     }
 
                     serverLevel.playSound(null, blockPos, SoundEvents.MOSS_PLACE, SoundSource.BLOCKS, 1f, 1f);

@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
 import org.jspecify.annotations.Nullable;
-import vectorwing.farmersdelight.common.references.ModBlockItemIds;
+import vectorwing.farmersdelight.common.registry.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -22,7 +22,7 @@ public class FTItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
                 .forceAddTag(ConventionalItemTags.SEEDS);
 
         if (FTBuiltInCompat.FARMERS_DELIGHT) {
-            builder(FTTags.GRASS_SEEDS).remove(ModBlockItemIds.RICE_CROP.item());
+            builder(FTTags.GRASS_SEEDS).add(ModItems.RICE.get().builtInRegistryHolder().key());
         }
     }
 }

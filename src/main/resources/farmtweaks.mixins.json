@@ -7,11 +7,12 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "FarmlandBlockMixin",
+    "HoeItemMixin",
     "accessor.IntegerPropertyAccessor",
     "accessor.LeavesBlockAccessor",
     "dispenser.MinecraftServerMixin",
     "leafdecay.LeavesBlockMixin",
-    "path.BlockTransformerMixin",
+    "path.ShovelItemMixin",
     "tree.SaplingBlockMixin"
   ],
   "injectors": {
