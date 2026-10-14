@@ -22,7 +22,7 @@ public class FTItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
                 .forceAddTag(ConventionalItemTags.SEEDS);
 
         if (FTBuiltInCompat.FARMERS_DELIGHT) {
-            builder(FTTags.GRASS_SEEDS).add(ModItems.RICE.get().builtInRegistryHolder().key());
+            builder(FTTags.GRASS_SEEDS).remove(ModItems.RICE.get().builtInRegistryHolder().key());
         }
     }
 }
